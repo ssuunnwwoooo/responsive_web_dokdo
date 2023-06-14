@@ -26,7 +26,7 @@ $(function () {
                 $('.cicle span:nth-child(1)').css({
                     transform: 'translate(-50%, 0) rotate(' + snum * 45 + 'deg)'
                 });
-                snum = sunm + 1;
+                snum = snum + 1;
             }
         },
     });
