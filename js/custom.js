@@ -1,4 +1,5 @@
 $(function () {
+
     $(window).on('scroll', function () {
         let sct = $(window).scrollTop();
         sct > 0
@@ -15,7 +16,9 @@ $(function () {
                 $(this).removeClass('on')
             }
         })
-    })
+    });
+
+
 
     const mainSlide = new Swiper('.main_slide', {
         loop: true,
@@ -39,8 +42,14 @@ $(function () {
 
     const noticeSlide = new Swiper('.notice_slide', {
         loop: true,
-        slidesPerView: 2,
-        spaceBetween: 30,
+        slidesPerView: 1,
+        spaceBetween: 0,
+        breakpoints: {
+            768: {
+                slidesPerView: 2,
+                spaceBetween: 30,
+            }
+        }
     });
 
     $('.main_notice .arrows .left').on('click', function () {
@@ -51,4 +60,34 @@ $(function () {
     });
 
 
+    $('.mobile_btn').on('click', function () {
+        $('.gnb').toggleClass('on');
+    });
+
+    $('.gnb .main_menu>li>a').on('click', function (e) {
+        if ($('.gnb').hasClass('on')) {
+            e.preventDefault();
+            $(this)
+                .next()
+                .stop()
+                .slideToggle();
+            $(this)
+                .parent()
+                .siblings()
+                .find('.sub_menu')
+                .stop()
+                .slideUp();
+        }
+    });
+
+
+    $(window).on('resize', function () {
+        $('.gnb').removeClass('on')
+    });
+
+    $('.gnb').on('wheel', function (e) {
+        if ($('.gnb').hasClass('on')) {
+            e.preventDefault();
+        }
+    });
 })
